@@ -1,0 +1,10 @@
+---
+- name: Install pexpect
+  ansible.builtin.pip:
+    name: pexpect
+
+- name: Set hosts
+  ansible.builtin.template:
+    src: hosts
+    dest: "/etc/hosts"
+  become: True

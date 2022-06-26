@@ -1,0 +1,29 @@
+---
+- name: Install
+  community.general.homebrew:
+    name: fzf
+    state: latest
+  become: False
+
+- name: Verify key bindings / fuzzy completion already installed
+  stat:
+    path: "{{ ansible_user_dir }}/.fzf.zsh"
+  register: fzf_zsh_conf_output
+
+- name: Verify key bindings / fuzzy completion already installed
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    line: "[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh"
+    state: present
+  check_mode: True
+  register: fzf_zsh_loaded_output
+
+- name: Install key bindings / fuzzy completion
+  ansible.builtin.expect:
+    command: "/usr/local/opt/fzf/install"
+    responses:
+      'Do you want to enable fuzzy auto-completion\? \(\[y\]\/n\) ': "y"
+      'Do you want to enable key bindings\? \(\[y\]\/n\) ': "y"
+      'Do you want to update your shell configuration files\? \(\[y\]\/n\) ': "y"
+  when: not fzf_zsh_conf_output.stat.exists and not fzf_zsh_loaded_output.found
+

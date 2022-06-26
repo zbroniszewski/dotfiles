@@ -1,0 +1,11 @@
+# Host addresses
+127.0.0.1 localhost
+127.0.1.1 {{ ansible_nodename }}
+::1       localhost ip6-localhost ip6-loopback
+
+# dotfiles addresses
+{% if system_hosts is defined %}
+{% for key, value in system_hosts.items() %}
+{{ key }} {{ value }}
+{% endfor %}
+{% endif %}

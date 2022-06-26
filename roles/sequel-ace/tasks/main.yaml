@@ -1,0 +1,6 @@
+---
+- name: Install
+  community.general.homebrew_cask:
+    name: sequel-ace
+    state: latest
+  become: False
