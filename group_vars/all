@@ -1,0 +1,12 @@
+default_roles:
+  - system
+  - git
+  - keychain
+  - lazygit
+  - fzf
+  - tmux
+  - terraform
+  - neovim
+  - sequel-ace
+  - awscli
+  - go
