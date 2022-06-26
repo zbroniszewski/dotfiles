@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+
+# Paths
+CONFIG_DIR="$HOME/.config/dotfiles"
+DOTFILES_DIR="$HOME/.dotfiles"
+SSH_DIR="$HOME/.ssh"
+
+# Install Ansible
+if ! [[ -x $(command -v ansible) ]]; then
+  pip install ansible
+fi
+
+if ! [[ $(pip3 show keyring &> /dev/null) ]]; then
+  pip install keyring
+fi
+
+#if ! [[ -d "$DOTFILES_DIR" ]]; then
+
+cd "$DOTFILES_DIR"
+
+# Update galaxy
+ansible-galaxy install -r requirements.yaml
+
+# Run playbook
+ansible-playbook --ask-become-pass --diff "$DOTFILES_DIR/main.yaml"
