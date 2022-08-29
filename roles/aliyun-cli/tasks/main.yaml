@@ -1,0 +1,7 @@
+---
+- name: Install Aliyun CLI
+  community.general.homebrew:
+    name: aliyun-cli
+    state: latest
+  become: False
+
