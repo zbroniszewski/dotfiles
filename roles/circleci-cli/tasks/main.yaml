@@ -1,0 +1,7 @@
+---
+- name: Install CircleCI CLI
+  community.general.homebrew:
+    name: circleci
+    state: latest
+  become: False
+
