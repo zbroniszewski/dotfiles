@@ -1,4 +1,16 @@
 ---
+- name: Install
+  community.general.homebrew:
+    name: neovim
+    state: latest
+  become: False
+
+- name: Install ripgrep (file search)
+  community.general.homebrew:
+    name: ripgrep
+    state: latest
+  become: False
+
 - name: Clone packer (plugin manager)
   ansible.builtin.git:
     clone: yes
@@ -9,3 +21,27 @@
     single_branch: yes
     update: yes
     version: master
+
+- name: Clone AstroNvim
+  ansible.builtin.git:
+    clone: yes
+    depth: 1
+    dest: "{{ ansible_user_dir }}/.config/nvim"
+    force: yes
+    repo: git@github.com:AstroNvim/AstroNvim.git
+    single_branch: yes
+    update: yes
+    version: main
+
+- name: Create lua/user directory
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/nvim/lua/user/"
+    state: directory
+    mode: '0755'
+
+- name: Stow user/init.lua
+  ansible.builtin.file:
+    src: "{{ role_path }}/templates/user.lua"
+    dest: "{{ ansible_user_dir }}/.config/nvim/lua/user/init.lua"
+    state: link
+
