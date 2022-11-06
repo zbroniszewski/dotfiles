@@ -361,7 +361,7 @@ local config = {
                                         -- File does not exist on disk
                                         return
                                 end
-                                if vim.fn.index({ ".git/COMMIT_EDITMSG" }, vim.fn.expand('%')) >= 0 then
+                                if string.sub(vim.fn.expand('%'), -14, -1) == "COMMIT_EDITMSG" then
                                         -- Exclude filenames
                                         return
                                 end
@@ -385,7 +385,7 @@ local config = {
                                         -- File does not exist on disk
                                         return
                                 end
-                                if vim.fn.index({ ".git/COMMIT_EDITMSG" }, vim.fn.expand('%')) >= 0 then
+                                if string.sub(vim.fn.expand('%'), -14, -1) == "COMMIT_EDITMSG" then
                                         -- Exclude filenames
                                         return
                                 end
