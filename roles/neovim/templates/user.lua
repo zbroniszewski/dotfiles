@@ -406,7 +406,7 @@ local config = {
                                         -- Exclude filenames
                                         return
                                 end
-                                vim.cmd("silent loadview")
+                                vim.cmd("silent! loadview")
                         end,
                 })
         end,
