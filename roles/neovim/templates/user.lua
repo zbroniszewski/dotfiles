@@ -287,6 +287,14 @@ local config = {
                 ["mason-null-ls"] = { -- overrides `require("mason-null-ls").setup(...)`
                         -- ensure_installed = { "prettier", "stylua" },
                 },
+                bufferline = {
+                        options = {
+                                show_close_icon = false,
+                                offsets = {
+                                        { filetype = "neo-tree", text = "", padding = 0 }
+                                }
+                        }
+                },
         },
 
         -- LuaSnip Options
