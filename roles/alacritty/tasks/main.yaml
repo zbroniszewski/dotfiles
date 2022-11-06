@@ -1,0 +1,11 @@
+- name: Install
+  community.general.homebrew_cask:
+    name: alacritty
+    state: latest
+  become: False
+
+- name: Stow alacritty.yml
+  ansible.builtin.file:
+    src: "{{ role_path }}/templates/alacritty.yml"
+    dest: "{{ ansible_user_dir }}/.config/alacritty/alacritty.yml"
+    state: link

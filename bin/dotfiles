@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+# pass --help flag to ansible-playbook for supported options
+if [[ "$1" == "--help" ]]; then
+  ansible-playbook --help
+  exit
+fi
+
 # Paths
 CONFIG_DIR="$HOME/.config/dotfiles"
 DOTFILES_DIR="$HOME/.dotfiles"
