@@ -89,12 +89,18 @@ local config = {
                 -- Modify the color palette for the default theme
                 colors = {
                         fg = "#abb2bf",
-                        bg = "#1e222a",
+                        -- bg = "#1e222a",
+                        bg = "#292c33",
+                        black = "#292c33",
+                        blue_2 = "#22252a",
+                        grey_8 = "#2d313b"
                 },
                 highlights = function(hl) -- or a function that returns a new table of colors to set
                         local C = require "default_theme.colors"
 
                         hl.Normal = { fg = C.fg, bg = C.bg }
+                        hl.NormalNC = { fg = C.fg, bg = C.bg }
+                        hl.BufferLineFill = { bg = C.bg }
 
                         -- New approach instead of diagnostic_style
                         hl.DiagnosticError.italic = true
