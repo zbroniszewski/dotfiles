@@ -295,6 +295,9 @@ local config = {
                                 }
                         }
                 },
+                ["neo-tree"] = {
+                        popup_border_style = "rounded",
+                }
         },
 
         -- LuaSnip Options
