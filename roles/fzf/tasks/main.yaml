@@ -27,3 +27,13 @@
       'Do you want to update your shell configuration files\? \(\[y\]\/n\) ': "y"
   when: not fzf_zsh_conf_output.stat.exists and not fzf_zsh_loaded_output.found
 
+- name: Install fzf-tab
+  ansible.builtin.git:
+    clone: yes
+    depth: 1
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/fzf-tab"
+    force: yes
+    repo: git@github.com:Aloxaf/fzf-tab.git
+    single_branch: yes
+    update: yes
+    version: master
