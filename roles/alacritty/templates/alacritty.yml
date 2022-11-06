@@ -37,7 +37,7 @@ window:
   # must be at least `2`, while using a value of `0` for columns and lines will
   # fall back to the window manager's recommended size.
   dimensions:
-    columns: 105
+    columns: 120
     lines: 30
 
   # Window position (changes require restart)
@@ -53,11 +53,11 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 4
+    x: 0
     y: 0
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: true
+  dynamic_padding: false
 
   # Window decorations
   #
@@ -168,9 +168,9 @@ font:
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
-  # offset:
-  #   x: 0
-  #   y: 0
+  offset:
+    x: 0
+    y: 20
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
@@ -194,7 +194,7 @@ colors:
   primary:
     # background: '0x282c34'
     foreground: '0xabb2bf'
-    background: '0x1e222a'
+    background: '0x292c33'
     # foreground: '0xabb2bf'
 
     # Bright and dim foreground colors
