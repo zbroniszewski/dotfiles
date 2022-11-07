@@ -215,11 +215,18 @@ local config = {
                         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
                         ["<A-j>"] = { "<ESC><CMD>move .+1<CR>==", desc = "Move current line down by one line" },
                         ["<A-k>"] = { "<ESC><CMD>move .-2<CR>==", desc = "Move current line up by one line" },
-                        ["<LEADER>d"] = { "<CMD>TroubleToggle<CR>", desc = "Toggle Trouble window" }
+                        ["<LEADER>d"] = { "<CMD>TroubleToggle<CR>", desc = "Toggle Trouble window", silent = true },
+                        ["<LEADER>ia"] = { "<CMD>Lspsaga code_action<CR>", desc = "Show code actions", silent = true },
+                        ["<LEADER>ir"] = { "<CMD>Lspsaga rename<CR>", desc = "Rename symbol", silent = true },
+                        ["<LEADER>id"] = { "<CMD>Lspsaga show_line_diagnostics<CR>", desc = "Show line diagnostics",
+                                silent = true }
                 },
                 t = {
                         -- setting a mapping to false will disable it
                         -- ["<esc>"] = false,
+                },
+                v = {
+                        ["<LEADER>ia"] = { "<CMD>Lspsaga code_action<CR>", desc = "Show code actions", silent = true },
                 },
                 x = {
                         ["<A-j>"] = { ":move '>+1<CR>gv=gv", desc = "Move current selection down by one line" },
@@ -258,6 +265,13 @@ local config = {
                                 config = function()
                                         require("trouble").setup {
                                         }
+                                end
+                        },
+                        {
+                                "glepnir/lspsaga.nvim",
+                                as = "lspsaga",
+                                config = function()
+                                        require("lspsaga").init_lsp_saga()
                                 end
                         }
                 },
@@ -339,6 +353,7 @@ local config = {
                                         -- third key is the key to bring up next level and its displayed
                                         -- group name in which-key top level menu
                                         ["b"] = { name = "Buffer" },
+                                        ["i"] = { name = "Lspsaga" }
                                 },
                         },
                 },
