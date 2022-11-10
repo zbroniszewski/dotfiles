@@ -328,8 +328,25 @@ local config = {
 			},
 		},
 		["neo-tree"] = {
-			popup_border_style = "rounded",
+      popup_border_style = "rounded",
+      log_level = "warn",
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_by_pattern = {
+            "*.git",
+          },
+        },
+      },
 		},
+		telescope = {
+			pickers = {
+				find_files = {
+					find_command = { "rg", "--files", "--hidden", "--no-ignore", "--follow", "--glob", "!.git/*" }
+				}
+			}
+		}
 	},
 
 	-- LuaSnip Options
