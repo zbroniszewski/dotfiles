@@ -299,6 +299,7 @@ local config = {
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.yamllint,
         null_ls.builtins.diagnostics.perlimports,
+        null_ls.builtins.diagnostics.hadolint,
       }
       return config -- return final config table
     end,
@@ -350,6 +351,7 @@ local config = {
         "yamllint",
         "perlimports",
         "perltidy",
+        "hadolint",
       },
     },
     bufferline = {
