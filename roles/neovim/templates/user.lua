@@ -253,12 +253,6 @@ local config = {
       --   end,
       -- },
       {
-        "folke/trouble.nvim",
-        as = "Trouble",
-        requires = "kyazdani42/nvim-web-devicons",
-        config = function() require("trouble").setup {} end,
-      },
-      {
         "davidgranstrom/nvim-markdown-preview",
         as = "MarkdownPreview",
         run = "npm install -g @compodoc/live-server && brew install pandoc",
