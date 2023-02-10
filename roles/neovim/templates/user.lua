@@ -288,7 +288,7 @@ local config = {
         null_ls.builtins.formatting.eslint_d,
         null_ls.builtins.formatting.phpcsfixer,
         null_ls.builtins.formatting.terraform_fmt,
-        null_ls.builtins.formatting.yamlfmt,
+        -- null_ls.builtins.formatting.yamlfmt,
         null_ls.builtins.formatting.perlimports,
         null_ls.builtins.formatting.perltidy,
         -- Set code actions
@@ -349,7 +349,7 @@ local config = {
         "phpcsfixer",
         "shellcheck",
         "php",
-        "yamlfmt",
+        -- "yamlfmt",
         "yamllint",
         "perlimports",
         "perltidy",
