@@ -97,7 +97,7 @@ local config = {
       grey_8 = "#2d313b",
     },
     highlights = function(hl) -- or a function that returns a new table of colors to set
-      local C = require "default_theme.colors"
+      local C = require("default_theme.colors")
 
       hl.Normal = { fg = C.fg, bg = C.bg }
       hl.NormalNC = { fg = C.fg, bg = C.bg }
@@ -269,21 +269,21 @@ local config = {
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
       -- config variable is the default configuration table for the setup function call
-      local null_ls = require "null-ls"
+      local null_ls = require("null-ls")
 
       -- Check supported formatters and linters
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       config.sources = {
         -- Set a formatter
-        null_ls.builtins.formatting.stylua.with {
+        null_ls.builtins.formatting.stylua.with({
           extra_args = {
             "--indent-type",
             "Spaces",
             "--indent-width",
             "2",
           },
-        },
+        }),
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.eslint_d,
         null_ls.builtins.formatting.phpcsfixer,
@@ -486,7 +486,7 @@ local config = {
       group = "buffer_views",
       pattern = "*",
       callback = function()
-        if vim.fn.has "quickfix" and vim.bo.filetype == "nofile" then
+        if vim.fn.has("quickfix") and vim.bo.filetype == "nofile" then
           -- Buffer is marked as not a file
           return
         end
@@ -494,15 +494,15 @@ local config = {
           -- Exclude filetypes
           return
         end
-        if vim.fn.expand "%:p" == "" then
+        if vim.fn.expand("%:p") == "" then
           -- File does not exist on disk
           return
         end
-        if string.sub(vim.fn.expand "%", -14, -1) == "COMMIT_EDITMSG" then
+        if string.sub(vim.fn.expand("%"), -14, -1) == "COMMIT_EDITMSG" then
           -- Exclude filenames
           return
         end
-        vim.cmd "mkview"
+        vim.cmd("mkview")
       end,
     })
     vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
@@ -510,7 +510,7 @@ local config = {
       group = "buffer_views",
       pattern = "*",
       callback = function()
-        if vim.fn.has "quickfix" and vim.bo.filetype == "nofile" then
+        if vim.fn.has("quickfix") and vim.bo.filetype == "nofile" then
           -- Buffer is marked as not a file
           return
         end
@@ -518,15 +518,15 @@ local config = {
           -- Exclude filetypes
           return
         end
-        if vim.fn.expand "%:p" == "" then
+        if vim.fn.expand("%:p") == "" then
           -- File does not exist on disk
           return
         end
-        if string.sub(vim.fn.expand "%", -14, -1) == "COMMIT_EDITMSG" then
+        if string.sub(vim.fn.expand("%"), -14, -1) == "COMMIT_EDITMSG" then
           -- Exclude filenames
           return
         end
-        vim.cmd "silent! loadview"
+        vim.cmd("silent! loadview")
       end,
     })
   end,
