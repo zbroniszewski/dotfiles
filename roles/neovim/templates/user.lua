@@ -9,7 +9,7 @@ local config = {
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
-    channel = "nightly", -- "stable" or "nightly"
+    channel = "stable", -- "stable" or "nightly"
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
     branch = "main", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
@@ -97,7 +97,7 @@ local config = {
       grey_8 = "#2d313b",
     },
     highlights = function(hl) -- or a function that returns a new table of colors to set
-      local C = require("default_theme.colors")
+      local C = require "default_theme.colors"
 
       hl.Normal = { fg = C.fg, bg = C.bg }
       hl.NormalNC = { fg = C.fg, bg = C.bg }
@@ -261,33 +261,32 @@ local config = {
       {
         "akinsho/git-conflict.nvim",
         tag = "*",
-        config = function()
-          require("git-conflict").setup()
-        end,
+        config = function() require("git-conflict").setup() end,
       },
       {
         "rebelot/heirline.nvim",
+        config = function() require("heirline").setup() end,
         commit = "556666a",
       },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
       -- config variable is the default configuration table for the setup function call
-      local null_ls = require("null-ls")
+      local null_ls = require "null-ls"
 
       -- Check supported formatters and linters
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       config.sources = {
         -- Set a formatter
-        null_ls.builtins.formatting.stylua.with({
+        null_ls.builtins.formatting.stylua.with {
           extra_args = {
             "--indent-type",
             "Spaces",
             "--indent-width",
             "2",
           },
-        }),
+        },
         null_ls.builtins.formatting.prettier,
         null_ls.builtins.formatting.eslint_d,
         null_ls.builtins.formatting.phpcsfixer,
@@ -427,30 +426,30 @@ local config = {
   },
 
   -- Customize Heirline options
-  heirline = {
-    -- -- Customize different separators between sections
-    -- separators = {
-    --   tab = { "", "" },
-    -- },
-    -- -- Customize colors for each element each element has a `_fg` and a `_bg`
-    -- colors = function(colors)
-    --   colors.git_branch_fg = astronvim.get_hlgroup "Conditional"
-    --   return colors
-    -- end,
-    -- -- Customize attributes of highlighting in Heirline components
-    -- attributes = {
-    --   -- styling choices for each heirline element, check possible attributes with `:h attr-list`
-    --   git_branch = { bold = true }, -- bold the git branch statusline component
-    -- },
-    -- -- Customize if icons should be highlighted
-    -- icon_highlights = {
-    --   breadcrumbs = false, -- LSP symbols in the breadcrumbs
-    --   file_icon = {
-    --     winbar = false, -- Filetype icon in the winbar inactive windows
-    --     statusline = true, -- Filetype icon in the statusline
-    --   },
-    -- },
-  },
+  -- heirline = {
+  -- -- Customize different separators between sections
+  -- separators = {
+  --   tab = { "", "" },
+  -- },
+  -- -- Customize colors for each element each element has a `_fg` and a `_bg`
+  -- colors = function(colors)
+  --   colors.git_branch_fg = astronvim.get_hlgroup "Conditional"
+  --   return colors
+  -- end,
+  -- -- Customize attributes of highlighting in Heirline components
+  -- attributes = {
+  --   -- styling choices for each heirline element, check possible attributes with `:h attr-list`
+  --   git_branch = { bold = true }, -- bold the git branch statusline component
+  -- },
+  -- -- Customize if icons should be highlighted
+  -- icon_highlights = {
+  --   breadcrumbs = false, -- LSP symbols in the breadcrumbs
+  --   file_icon = {
+  --     winbar = false, -- Filetype icon in the winbar inactive windows
+  --     statusline = true, -- Filetype icon in the statusline
+  --   },
+  -- },
+  -- },
 
   -- Modify which-key registration (Use this with mappings table in the above.)
   ["which-key"] = {
@@ -490,7 +489,7 @@ local config = {
       group = "buffer_views",
       pattern = "*",
       callback = function()
-        if vim.fn.has("quickfix") and vim.bo.filetype == "nofile" then
+        if vim.fn.has "quickfix" and vim.bo.filetype == "nofile" then
           -- Buffer is marked as not a file
           return
         end
@@ -498,15 +497,15 @@ local config = {
           -- Exclude filetypes
           return
         end
-        if vim.fn.expand("%:p") == "" then
+        if vim.fn.expand "%:p" == "" then
           -- File does not exist on disk
           return
         end
-        if string.sub(vim.fn.expand("%"), -14, -1) == "COMMIT_EDITMSG" then
+        if string.sub(vim.fn.expand "%", -14, -1) == "COMMIT_EDITMSG" then
           -- Exclude filenames
           return
         end
-        vim.cmd("mkview")
+        vim.cmd "mkview"
       end,
     })
     vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
@@ -514,7 +513,7 @@ local config = {
       group = "buffer_views",
       pattern = "*",
       callback = function()
-        if vim.fn.has("quickfix") and vim.bo.filetype == "nofile" then
+        if vim.fn.has "quickfix" and vim.bo.filetype == "nofile" then
           -- Buffer is marked as not a file
           return
         end
@@ -522,15 +521,15 @@ local config = {
           -- Exclude filetypes
           return
         end
-        if vim.fn.expand("%:p") == "" then
+        if vim.fn.expand "%:p" == "" then
           -- File does not exist on disk
           return
         end
-        if string.sub(vim.fn.expand("%"), -14, -1) == "COMMIT_EDITMSG" then
+        if string.sub(vim.fn.expand "%", -14, -1) == "COMMIT_EDITMSG" then
           -- Exclude filenames
           return
         end
-        vim.cmd("silent! loadview")
+        vim.cmd "silent! loadview"
       end,
     })
   end,
