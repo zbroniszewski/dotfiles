@@ -258,6 +258,13 @@ local config = {
         run = "npm install -g @compodoc/live-server && brew install pandoc",
         ft = { "markdown" },
       },
+      {
+        "akinsho/git-conflict.nvim",
+        tag = "*",
+        config = function()
+          require("git-conflict").setup()
+        end,
+      },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
