@@ -36,3 +36,5 @@
       tags: exa
     - role: zsh
       tags: zsh
+    - role: postman
+      tags: postman
