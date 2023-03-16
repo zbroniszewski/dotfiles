@@ -291,6 +291,7 @@ local config = {
         null_ls.builtins.formatting.eslint_d,
         null_ls.builtins.formatting.phpcsfixer,
         null_ls.builtins.formatting.terraform_fmt,
+        null_ls.builtins.formatting.autopep8,
         -- null_ls.builtins.formatting.yamlfmt,
         -- null_ls.builtins.formatting.perlimports,
         null_ls.builtins.formatting.perltidy,
@@ -322,6 +323,7 @@ local config = {
         -- null_ls.builtins.diagnostics.perlimports,
         null_ls.builtins.diagnostics.hadolint,
         null_ls.builtins.diagnostics.golangci_lint,
+        null_ls.builtins.diagnostics.pylint,
       }
       return config -- return final config table
     end,
@@ -338,6 +340,7 @@ local config = {
         "yaml",
         "perl",
         "go",
+        "python",
       }
       return config
     end,
@@ -358,6 +361,7 @@ local config = {
         "marksman",
         "perlnavigator",
         "gopls",
+        "pylsp",
       },
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
@@ -376,6 +380,8 @@ local config = {
         "perltidy",
         "hadolint",
         "golangci-lint",
+        "pylint",
+        "autopep8",
       },
     },
     bufferline = {
