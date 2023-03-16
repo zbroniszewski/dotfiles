@@ -321,6 +321,7 @@ local config = {
         },
         -- null_ls.builtins.diagnostics.perlimports,
         null_ls.builtins.diagnostics.hadolint,
+        null_ls.builtins.diagnostics.golangci_lint,
       }
       return config -- return final config table
     end,
@@ -336,6 +337,7 @@ local config = {
         "php",
         "yaml",
         "perl",
+        "go",
       }
       return config
     end,
@@ -355,6 +357,7 @@ local config = {
         "dockerls",
         "marksman",
         "perlnavigator",
+        "gopls",
       },
     },
     -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
@@ -372,6 +375,7 @@ local config = {
         "yamllint",
         "perltidy",
         "hadolint",
+        "golangci-lint",
       },
     },
     bufferline = {
