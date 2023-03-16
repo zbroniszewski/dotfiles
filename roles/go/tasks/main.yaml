@@ -1,7 +1,6 @@
 ---
 - name: Install
   community.general.homebrew:
-    name:
-      go
+    name: go
     state: latest
-  become: False
+  become: false
