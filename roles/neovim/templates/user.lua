@@ -292,7 +292,7 @@ local config = {
         null_ls.builtins.formatting.phpcsfixer,
         null_ls.builtins.formatting.terraform_fmt,
         -- null_ls.builtins.formatting.yamlfmt,
-        null_ls.builtins.formatting.perlimports,
+        -- null_ls.builtins.formatting.perlimports,
         null_ls.builtins.formatting.perltidy,
         -- Set code actions
         null_ls.builtins.code_actions.eslint_d,
@@ -303,7 +303,7 @@ local config = {
         null_ls.builtins.diagnostics.php,
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.diagnostics.yamllint,
-        null_ls.builtins.diagnostics.perlimports,
+        -- null_ls.builtins.diagnostics.perlimports,
         null_ls.builtins.diagnostics.hadolint,
       }
       return config -- return final config table
@@ -354,7 +354,6 @@ local config = {
         "php",
         -- "yamlfmt",
         "yamllint",
-        "perlimports",
         "perltidy",
         "hadolint",
       },
