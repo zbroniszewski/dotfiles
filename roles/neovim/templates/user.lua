@@ -302,7 +302,15 @@ local config = {
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.diagnostics.php,
         null_ls.builtins.diagnostics.shellcheck,
-        null_ls.builtins.diagnostics.yamllint,
+        null_ls.builtins.diagnostics.yamllint.with {
+          args = {
+            "--format",
+            "parsable",
+            "--config-data",
+            "{extends: default, rules: {line-length: {max: 140}}}",
+            "-",
+          },
+        },
         -- null_ls.builtins.diagnostics.perlimports,
         null_ls.builtins.diagnostics.hadolint,
       }
