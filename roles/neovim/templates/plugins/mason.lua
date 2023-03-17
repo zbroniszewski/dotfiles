@@ -47,7 +47,7 @@ return {
         "golangci-lint",
         "pylint",
         "autopep8",
-        "ansiblelint",
+        "ansible-lint",
       },
     },
   },
