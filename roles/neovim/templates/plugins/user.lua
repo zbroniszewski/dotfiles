@@ -10,9 +10,7 @@ return {
   --   end,
   -- },
   {
-    "davidgranstrom/nvim-markdown-preview",
-    as = "MarkdownPreview",
-    run = "npm install -g @compodoc/live-server && brew install pandoc",
-    ft = { "markdown" },
+    "HiPhish/nvim-ts-rainbow2",
+    event = "BufRead",
   },
 }
