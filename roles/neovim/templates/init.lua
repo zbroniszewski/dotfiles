@@ -76,6 +76,18 @@ return {
           },
         },
       },
+      ansiblels = {
+        -- override table for require("lspconfig").ansiblels.setup({...})
+        settings = {
+          ansible = {
+            validation = {
+              lint = {
+                enabled = false,
+              },
+            },
+          },
+        },
+      },
     },
     -- enable servers that you already have installed without mason
     servers = {
