@@ -1,6 +1,10 @@
+local trouble = require("trouble.providers.telescope")
+local actions = require("telescope.actions")
+
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
+    "folke/trouble.nvim",
     "nvim-telescope/telescope-media-files.nvim",
   },
   config = function(plugin, opts)
@@ -16,11 +20,21 @@ return {
           "!.git/*",
         },
       },
+      buffers = {
+        path_display = { "smart" },
+        mappings = {
+          i = { ["<c-d>"] = actions.delete_buffer },
+          n = { ["d"] = actions.delete_buffer },
+        },
+      },
     }
 
-    require "plugins.configs.telescope" (plugin, opts)
+    opts.defaults.mappings.i["<C-b>"] = trouble.open_with_trouble
+    opts.defaults.mappings.n["<C-b>"] = trouble.open_with_trouble
 
-    local telescope = require "telescope"
-    telescope.load_extension "media_files"
+    require("plugins.configs.telescope")(plugin, opts)
+
+    local telescope = require("telescope")
+    telescope.load_extension("media_files")
   end,
 }
