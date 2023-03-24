@@ -9,8 +9,50 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- },
-  {
-    "HiPhish/nvim-ts-rainbow2",
-    event = "BufRead",
-  },
+  -- {
+  --   "petertriho/nvim-scrollbar",
+  --   event = "BufEnter",
+  --   config = function()
+  --     require("scrollbar").setup()
+  --   end,
+  -- },
+  -- {
+  --   "olimorris/onedarkpro.nvim",
+  --   prioritiy = 1000,
+  --   opts = {
+  --     options = {
+  --       cursorline = true,
+  --     },
+  --     colors = {
+  --       gray_2 = "#616368",
+  --       gray_3 = "#535a6a",
+  --       gray_4 = "#4b505f",
+  --     },
+  --     highlights = {
+  --       CursorLineNr = {
+  --         fg = "${white}",
+  --       },
+  --       IndentBlanklineContextChar = {
+  --         fg = "${gray_2}",
+  --       },
+  --       MatchParen = {
+  --         fg = "None",
+  --         -- bg = "#3e4452",
+  --         bg = "${gray_3}",
+  --       },
+  --       LspReferenceText = {
+  --         bg = "${gray_4}",
+  --       },
+  --       TSRainbowRed = { fg = "${yellow}" },
+  --       TSRainbowYellow = { fg = "${purple}" },
+  --       TSRainbowBlue = { fg = "${blue}" },
+  --       TSRainbowOrange = { fg = "${yellow}" },
+  --       TSRainbowGreen = { fg = "${purple}" },
+  --       TSRainbowViolet = { fg = "${blue}" },
+  --       TSRainbowCyan = { fg = "${yellow}" },
+  --       ["@type.qualifier.typescript"] = { fg = "${purple}" },
+  --       ["@lsp.typemod.variable.readonly.typescript"] = { fg = "${yellow}" },
+  --     },
+  --   },
+  -- },
 }
