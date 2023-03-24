@@ -90,6 +90,22 @@ return {
           },
         },
       },
+      lua_ls = {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+            telemetry = {
+              enable = false,
+            },
+          },
+        },
+      },
+      tailwindcss = function(opts)
+        opts.root_dir = require("lspconfig.util").root_pattern("tailwind.config.js")
+        return opts
+      end,
     },
     -- enable servers that you already have installed without mason
     servers = {
