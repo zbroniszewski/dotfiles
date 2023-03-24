@@ -3,9 +3,22 @@
 -- Please use this mappings table to set keyboard mapping since this is the
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
+
+local astro_utils = require("astronvim.utils")
+
 return {
   -- first key is the mode
   n = {
+    ["<Tab>"] = {
+      function()
+        if #vim.t.bufs > 1 then
+          require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true })
+        else
+          astro_utils.notify("No other buffers open")
+        end
+      end,
+      desc = "Switch Buffers",
+    },
     -- remove default bindings
     ["<C-s>"] = false,
     ["<C-q>"] = false,
@@ -17,9 +30,9 @@ return {
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(
-          function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
-        )
+        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+          require("astronvim.utils.buffer").close(bufnr)
+        end)
       end,
       desc = "Pick to close",
     },
@@ -36,16 +49,22 @@ return {
     ["<A-k>"] = { "<ESC><CMD>move .-2<CR>==", desc = "Move current line up by one line" },
     -- ["<leader>d"] = { "<CMD>TroubleToggle<CR>", desc = "Toggle Trouble window", silent = true },
     L = {
-      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+      function()
+        require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1)
+      end,
       desc = "Next buffer",
     },
     H = {
-      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+      function()
+        require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1))
+      end,
       desc = "Previous buffer",
     },
     ["<leader>m"] = { name = "Markdown" },
     ["<leader>mp"] = {
-      function() require("peek").open() end,
+      function()
+        require("peek").open()
+      end,
       desc = "Markdown Preview",
     },
   },
