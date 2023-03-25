@@ -5,7 +5,15 @@ return {
   -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
   -- { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.completion.copilot-lua-cmp" },
+  {
+    import = "astrocommunity.completion.copilot-lua-cmp",
+    opts = {
+      keymap = {
+        next = "<A-]>",
+        prev = "<A-[>",
+      },
+    },
+  },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.go" },
