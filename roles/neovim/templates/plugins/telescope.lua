@@ -5,14 +5,26 @@ return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
     "folke/trouble.nvim",
-    "nvim-telescope/telescope-media-files.nvim",
   },
-  config = function(plugin, opts)
-    opts.pickers = {
-      find_files = {
-        find_command = {
+  opts = function(_, opts)
+    return require("astronvim.utils").extend_tbl(opts, {
+      defaults = {
+        mappings = {
+          i = {
+            ["<C-b>"] = trouble.open_with_trouble,
+          },
+          n = {
+            ["<C-b>"] = trouble.open_with_trouble,
+          },
+        },
+        vimgrep_arguments = {
           "rg",
-          "--files",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
           "--hidden",
           "--no-ignore",
           "--follow",
@@ -20,21 +32,26 @@ return {
           "!.git/*",
         },
       },
-      buffers = {
-        path_display = { "smart" },
-        mappings = {
-          i = { ["<c-d>"] = actions.delete_buffer },
-          n = { ["d"] = actions.delete_buffer },
+      pickers = {
+        buffers = {
+          path_display = { "smart" },
+          mappings = {
+            i = { ["<c-d>"] = actions.delete_buffer },
+            n = { ["d"] = actions.delete_buffer },
+          },
+        },
+        find_files = {
+          find_command = {
+            "rg",
+            "--files",
+            "--hidden",
+            "--no-ignore",
+            "--follow",
+            "--glob",
+            "!.git/*",
+          },
         },
       },
-    }
-
-    opts.defaults.mappings.i["<C-b>"] = trouble.open_with_trouble
-    opts.defaults.mappings.n["<C-b>"] = trouble.open_with_trouble
-
-    require("plugins.configs.telescope")(plugin, opts)
-
-    local telescope = require("telescope")
-    telescope.load_extension("media_files")
+    })
   end,
 }
