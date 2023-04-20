@@ -1,11 +1,13 @@
 ---
-- name: Clone Powerlevel10k theme
-  ansible.builtin.git:
-    clone: yes
-    depth: 1
-    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/themes/powerlevel10k"
-    force: yes
-    repo: git@github.com:romkatv/powerlevel10k.git
-    single_branch: yes
-    update: yes
-    version: master
+- name: Create oh-my-zsh custom lib directory
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.oh-my-zsh/custom/lib"
+    state: directory
+    mode: 0700
+
+- name: Fix slow paste
+  ansible.builtin.copy:
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/lib/misc.zsh"
+    content: ""
+    mode: 0600
+    force: false
