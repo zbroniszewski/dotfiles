@@ -10,6 +10,8 @@
       tags: alacritty
     - role: keychain
       tags: keychain
+    - role: yubikey
+      tags: yubikey
     - role: lazygit
       tags: lazygit
     - role: fzf

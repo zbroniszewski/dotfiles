@@ -1,0 +1,12 @@
+---
+- name: Install Yubikey Manager
+  community.general.homebrew:
+    name: ykman
+    state: latest
+  become: false
+
+- name: Install yubico-pam (Authentication Module)
+  community.general.homebrew:
+    name: pam_yubico
+    state: latest
+  become: false
