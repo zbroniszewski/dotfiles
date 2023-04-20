@@ -175,5 +175,24 @@ return {
         yaml = yaml_ft,
       },
     })
+
+    local augroup = vim.api.nvim_create_augroup
+    local autocmd = vim.api.nvim_create_autocmd
+
+    augroup("lsp_highlights", { clear = true })
+
+    autocmd("LSPAttach", {
+      desc = "Fix LSP semantic highlights",
+      group = "lsp_highlights",
+      pattern = "*",
+      callback = function(args)
+        -- -- local bufnr = args.buf
+        -- local client = vim.lsp.get_client_by_id(args.data.client_id)
+        -- if client.name ~= "terraformls" then
+        --   return
+        -- end
+        -- vim.api.nvim_set_hl(0, "@lsp.type.variable.terraform", {})
+      end,
+    })
   end,
 }
