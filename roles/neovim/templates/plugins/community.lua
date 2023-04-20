@@ -7,12 +7,6 @@ return {
   -- { import = "astrocommunity.colorscheme.catppuccin" },
   {
     import = "astrocommunity.completion.copilot-lua-cmp",
-    opts = {
-      keymap = {
-        next = "<A-]>",
-        prev = "<A-[>",
-      },
-    },
   },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.rust" },
