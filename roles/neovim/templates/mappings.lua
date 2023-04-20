@@ -9,16 +9,16 @@ local astro_utils = require("astronvim.utils")
 return {
   -- first key is the mode
   n = {
-    ["<Tab>"] = {
-      function()
-        if #vim.t.bufs > 1 then
-          require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true })
-        else
-          astro_utils.notify("No other buffers open")
-        end
-      end,
-      desc = "Switch Buffers",
-    },
+    -- ["<Tab>"] = {
+    --   function()
+    --     if #vim.t.bufs > 1 then
+    --       require("telescope.builtin").buffers({ sort_mru = true, ignore_current_buffer = true })
+    --     else
+    --       astro_utils.notify("No other buffers open")
+    --     end
+    --   end,
+    --   desc = "Switch Buffers",
+    -- },
     -- remove default bindings
     ["<C-s>"] = false,
     ["<C-q>"] = false,
