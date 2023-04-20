@@ -1,32 +1,29 @@
 #!/bin/bash
 set -e
 
-# pass --help flag to ansible-playbook for supported options
-if [[ "$1" == "--help" ]]; then
-  ansible-playbook --help
-  exit
-fi
+python3 -m venv ./.venv
+source ./.venv/bin/activate
+python3 -m pip install --upgrade pip 1>/dev/null
 
 # Paths
-CONFIG_DIR="$HOME/.config/dotfiles"
 DOTFILES_DIR="$HOME/.dotfiles"
-SSH_DIR="$HOME/.ssh"
 
 # Install Ansible
-if ! [[ -x $(command -v ansible) ]]; then
-  pip install ansible
+if ! [[ $(python3 -m pip show ansible 2>/dev/null) ]]; then
+	python3 -m pip install ansible 1>/dev/null
+fi
+if ! [[ $(python3 -m pip show keyring 2>/dev/null) ]]; then
+	python3 -m pip install keyring 1>/dev/null
 fi
 
-if ! [[ $(pip3 show keyring &> /dev/null) ]]; then
-  pip install keyring
+# pass --help flag to ansible-playbook for supported options
+if [[ "$1" == "--help" ]]; then
+	ansible-playbook --help
+	exit
 fi
-
-#if ! [[ -d "$DOTFILES_DIR" ]]; then
-
-cd "$DOTFILES_DIR"
 
 # Update galaxy
-ansible-galaxy install -r requirements.yaml
+ansible-galaxy install -r "$DOTFILES_DIR/requirements.yaml" 1>/dev/null
 
 # Run playbook
-ansible-playbook --ask-become-pass --diff "$@" "$DOTFILES_DIR/main.yaml"
+ansible-playbook -i localhost, --connection=local --ask-become-pass --diff "$@" "$DOTFILES_DIR/main.yaml"
