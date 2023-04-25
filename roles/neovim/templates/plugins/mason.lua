@@ -1,4 +1,5 @@
-local utils = require("astrocommunity.utils")
+local utils = require("astronvim.utils")
+utils = utils.extend_tbl(utils, require("astrocommunity.utils"))
 
 -- customize mason plugins
 return {
@@ -57,10 +58,43 @@ return {
       utils.list_insert_unique(opts.ensure_installed, "black")
       utils.list_insert_unique(opts.ensure_installed, "ansible-lint")
       utils.list_insert_unique(opts.ensure_installed, "markdown-toc")
+      utils.list_insert_unique(opts.ensure_installed, "dotenv_linter")
+
+      local null_ls = require("null-ls")
+
+      opts.handlers = utils.extend_tbl(opts.handlers, {
+        dotenv_linter = function()
+          null_ls.register(null_ls.builtins.diagnostics.dotenv_linter.with({
+            filetypes = { "env" },
+          }))
+        end,
+        stylua = function()
+          null_ls.register(null_ls.builtins.formatting.stylua.with({
+            extra_args = {
+              "--indent-type",
+              "Spaces",
+              "--indent-width",
+              "2",
+            },
+          }))
+        end,
+        yamllint = function()
+          null_ls.register(null_ls.builtins.diagnostics.yamllint.with({
+            args = {
+              "--format",
+              "parsable",
+              "--config-data",
+              "{extends: default, rules: {line-length: {max: 120}}}",
+              "-",
+            },
+          }))
+        end,
+      })
     end,
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
+    tag = "v2.0.1",
     -- overrides `require("mason-nvim-dap").setup(...)`
     opts = {
       -- ensure_installed = { "python" },
