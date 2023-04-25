@@ -20,7 +20,7 @@ return {
       },
     },
     source_selector = {
-      winbar = true,
+      winbar = false,
       statusline = false,
       sources = {
         { source = "filesystem" },
