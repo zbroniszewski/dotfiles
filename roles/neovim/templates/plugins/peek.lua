@@ -1,9 +1,9 @@
 return {
   "toppair/peek.nvim",
-  run = "deno task --quiet build:fast",
+  build = "deno task --quiet build:fast",
   config = function()
-    require("peek").setup {
+    require("peek").setup({
       app = "browser",
-    }
+    })
   end,
 }
