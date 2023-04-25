@@ -57,7 +57,14 @@ return {
     -- add to the global LSP on_attach function
     -- on_attach = function(client, bufnr)
     -- end,
-
+    setup_handlers = {
+      bashls = function(_, opts)
+        local filename = vim.fn.expand("%:t")
+        if not (filename == ".env") then
+          require("lspconfig")["bashls"].setup(opts)
+        end
+      end,
+    },
     -- override the mason server-registration function
     -- server_registration = function(server, opts)
     --   require("lspconfig")[server].setup(opts)
@@ -139,12 +146,12 @@ return {
       extension = {
         tf = "terraform",
       },
-      --   filename = {
-      --     ["Foofile"] = "fooscript",
-      --   },
-      --   pattern = {
-      --     ["~/%.config/foo/.*"] = "fooscript",
-      --   },
+      filename = {
+        [".env"] = "env",
+      },
+      -- pattern = {
+      --   ["~/%.config/foo/.*"] = "fooscript",
+      -- },
     })
 
     local function yaml_ft(path, bufnr)
