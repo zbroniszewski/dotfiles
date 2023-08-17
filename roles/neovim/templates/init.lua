@@ -147,9 +147,7 @@ return {
         tf = "terraform",
         tfvars = "terraform",
       },
-      filename = {
-        [".env"] = "env",
-      },
+      filename = {},
       -- pattern = {
       --   ["~/%.config/foo/.*"] = "fooscript",
       -- },
