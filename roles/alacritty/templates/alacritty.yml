@@ -182,14 +182,14 @@ font:
   #builtin_box_drawing: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
 colors:
   # Default colors
   primary:
-    background: "0x292c33"
-    foreground: "0xabb2bf"
+    background: "#1e222a"
+    foreground: "#abb2bf"
 
     # Bright and dim foreground colors
     #
@@ -278,43 +278,43 @@ colors:
   # affected cell, or hexadecimal colors like #ff00ff.
   selection:
     text: CellBackground
-    background: "0x393f4a"
+    background: "#3e4452"
 
   # Normal colors
   normal:
-    black: "0x20232A"
-    red: "0xe06c75"
-    green: "0x98c379"
-    yellow: "0xebd09c"
-    blue: "0x61afef"
-    magenta: "0xc678dd"
-    cyan: "0x56b6c2"
-    white: "0x798294"
+    black: "#1e222a"
+    red: "#ec5f67"
+    green: "#98C379"
+    yellow: "#e5c06b"
+    blue: "#61AFEF"
+    magenta: "#C678DD"
+    cyan: "#56B6C2"
+    white: "#ABB2BF"
 
   # Bright colors
   bright:
-    black: "0x798294"
-    red: "0xe86671"
-    green: "0x98c379"
-    yellow: "0xe5c07b"
-    blue: "0x528bff"
-    magenta: "0xc678dd"
-    cyan: "0x56b6c2"
-    white: "0xabb2bf"
+    black: "#5C6370"
+    red: "#E06C75"
+    green: "#89b06d"
+    yellow: "#e5c06b"
+    blue: "#90c7f3"
+    magenta: "#a9a1e1"
+    cyan: "#88cbd4"
+    white: "#FFFFFF"
 
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
-  #dim:
-  #  black:   '#131415'
-  #  red:     '#864343'
-  #  green:   '#777c44'
-  #  yellow:  '#9e824c'
-  #  blue:    '#556a7d'
-  #  magenta: '#75617b'
-  #  cyan:    '#5b7d78'
-  #  white:   '#828482'
+  # dim:
+  #   black: "0x1d2028"
+  #   red: "0x864343"
+  #   green: "0x6e7845"
+  #   yellow: "0xa68e57"
+  #   blue: "0x4c5f73"
+  #   magenta: "0x725e6d"
+  #   cyan: "0x5b7d78"
+  #   white: "0x828482"
 
   # Indexed Colors
   #
@@ -324,8 +324,39 @@ colors:
   # Example:
   #   `- { index: 16, color: '#ff00ff' }`
   #
-  #indexed_colors: []
-
+  indexed_colors:
+    - index: 16
+      color: "#282c34"
+    - index: 17
+      color: "#e06c75"
+    - index: 18
+      color: "#98c379"
+    - index: 19
+      color: "#d19a66"
+    - index: 20
+      color: "#61afef"
+    - index: 21
+      color: "#c678dd"
+    - index: 22
+      color: "#56b6c2"
+    - index: 23
+      color: "#ffffff"
+    - index: 24
+      color: "#282c34"
+    - index: 25
+      color: "#e06c75"
+    - index: 26
+      color: "#98c379"
+    - index: 27
+      color: "#d19a66"
+    - index: 28
+      color: "#61afef"
+    - index: 29
+      color: "#c678dd"
+    - index: 30
+      color: "#56b6c2"
+    - index: 31
+      color: "#ffffff"
   # Transparent cell backgrounds
   #
   # Whether or not `window.opacity` applies to all cell backgrounds or only to
