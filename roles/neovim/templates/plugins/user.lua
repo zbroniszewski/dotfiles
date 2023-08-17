@@ -1,4 +1,8 @@
 return {
+  {
+    "Glench/Vim-Jinja2-Syntax",
+    event = "BufRead",
+  },
   -- {
   --   "AstroNvim/astrotheme",
   --   dir = "/Users/zach/Developer/astrotheme",
