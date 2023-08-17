@@ -15,33 +15,35 @@ return {
     --     })
     --   end,
     -- },
-    opts = function(opts)
+    opts = function(_, opts)
       -- local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
       -- ft_to_parser["terraform"] = "terraform"
-      if not opts.ensure_installed then
-        opts.ensure_installed = {}
+      if opts.ensure_installed == "all" then
+        return
       end
-      utils.list_insert_unique(opts.ensure_installed, "bash")
-      utils.list_insert_unique(opts.ensure_installed, "lua")
-      utils.list_insert_unique(opts.ensure_installed, "luap")
-      utils.list_insert_unique(opts.ensure_installed, "javascript")
-      utils.list_insert_unique(opts.ensure_installed, "json")
-      utils.list_insert_unique(opts.ensure_installed, "jsonc")
-      utils.list_insert_unique(opts.ensure_installed, "typescript")
-      utils.list_insert_unique(opts.ensure_installed, "tsx")
-      utils.list_insert_unique(opts.ensure_installed, "rust")
-      utils.list_insert_unique(opts.ensure_installed, "hcl")
-      utils.list_insert_unique(opts.ensure_installed, "terraform")
-      utils.list_insert_unique(opts.ensure_installed, "dockerfile")
-      utils.list_insert_unique(opts.ensure_installed, "markdown")
-      utils.list_insert_unique(opts.ensure_installed, "markdown_inline")
-      utils.list_insert_unique(opts.ensure_installed, "php")
-      utils.list_insert_unique(opts.ensure_installed, "yaml")
-      utils.list_insert_unique(opts.ensure_installed, "perl")
-      utils.list_insert_unique(opts.ensure_installed, "go")
-      utils.list_insert_unique(opts.ensure_installed, "python")
-      utils.list_insert_unique(opts.ensure_installed, "toml")
-      return opts
+
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, {
+        "bash",
+        "lua",
+        "luap",
+        "javascript",
+        "json",
+        "jsonc",
+        "typescript",
+        "tsx",
+        "rust",
+        "hcl",
+        "terraform",
+        "dockerfile",
+        "markdown",
+        "markdown_inline",
+        "php",
+        "yaml",
+        "perl",
+        "go",
+        "python",
+        "toml",
+      })
     end,
     -- rainbow = {
     --   enable = true,
