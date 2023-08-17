@@ -69,6 +69,28 @@ return {
             },
           }))
         end,
+        eslint_d = function()
+          null_ls.register(null_ls.builtins.diagnostics.eslint_d.with({
+            filter = function(diagnostic)
+              if not string.find(diagnostic.message, "No ESLint configuration found") then
+                return true
+              end
+            end,
+          }))
+        end,
+        shellcheck = function()
+          null_ls.register(null_ls.builtins.diagnostics.shellcheck.with({
+            condition = function(_utils)
+              local filename = vim.fn.expand("%:t")
+              return not (filename == ".env")
+            end,
+          }))
+        end,
+        shfmt = function()
+          null_ls.register(null_ls.builtins.formatting.shfmt.with({
+            extra_args = { "-i", "2" },
+          }))
+        end,
         yamllint = function()
           null_ls.register(null_ls.builtins.diagnostics.yamllint.with({
             args = {
