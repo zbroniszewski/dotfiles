@@ -474,7 +474,7 @@ shell:
   args:
     - --login
     - -c
-    - "tmux attach -t main || tmux new-session -s main"
+    - "tmux attach -t main &>/dev/null || tmux new-session -s main &>/dev/null"
 
 # Startup directory
 #
