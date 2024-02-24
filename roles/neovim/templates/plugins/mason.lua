@@ -8,6 +8,7 @@ return {
     -- overrides `require("mason-lspconfig").setup(...)`
     opts = function(_, opts)
       opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, {
+        "emmet_ls",
         "bashls",
         "lua_ls",
         "tsserver",
@@ -19,6 +20,7 @@ return {
         -- "phpactor",
         "rust_analyzer",
         "terraformls",
+        "tflint",
         "dockerls",
         "marksman",
         "perlnavigator",
@@ -27,6 +29,35 @@ return {
         -- "ruff_lsp",
         "ansiblels",
         "yamlls",
+      })
+      opts.handlers = utils.extend_tbl(opts.handlers, {
+        ["bashls"] = function()
+          require("lspconfig")["bashls"].setup({
+            handlers = {
+              ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+                if result.diagnostics ~= nil then
+                  local idx = 1
+                  while idx <= #result.diagnostics do
+                    -- Ref: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
+                    if result.diagnostics[idx].source == "shellcheck" then
+                      table.remove(result.diagnostics, idx)
+                    else
+                      idx = idx + 1
+                    end
+                  end
+                end
+                vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+              end,
+            },
+          })
+          -- require("lspconfig")["bashls"].setup({
+          --   settings = {
+          --     bashIde = {
+          --       globPattern = "*@(.sh)",
+          --     },
+          --   },
+          -- })
+        end,
       })
     end,
   },
@@ -37,7 +68,7 @@ return {
     opts = function(_, opts)
       opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, {
         "stylua",
-        "eslint_d",
+        -- "eslint_d",
         -- "phpcsfixer",
         "shellcheck",
         "shfmt",
@@ -56,7 +87,12 @@ return {
       opts.handlers = utils.extend_tbl(opts.handlers, {
         dotenv_linter = function()
           null_ls.register(null_ls.builtins.diagnostics.dotenv_linter.with({
-            filetypes = { "env" },
+            filetypes = { "sh" },
+            runtime_condition = function(_utils)
+              local filename = vim.fn.expand("%:t")
+              local file_extension = vim.fn.expand("%:e")
+              return filename == ".env" or file_extension == "env"
+            end,
           }))
         end,
         stylua = function()
@@ -69,20 +105,21 @@ return {
             },
           }))
         end,
-        eslint_d = function()
-          null_ls.register(null_ls.builtins.diagnostics.eslint_d.with({
-            filter = function(diagnostic)
-              if not string.find(diagnostic.message, "No ESLint configuration found") then
-                return true
-              end
-            end,
-          }))
-        end,
+        -- eslint_d = function()
+        --   null_ls.register(null_ls.builtins.diagnostics.eslint_d.with({
+        --     filter = function(diagnostic)
+        --       if not string.find(diagnostic.message, "No ESLint configuration found") then
+        --         return true
+        --       end
+        --     end,
+        --   }))
+        -- end,
         shellcheck = function()
           null_ls.register(null_ls.builtins.diagnostics.shellcheck.with({
-            condition = function(_utils)
+            runtime_condition = function(_utils)
               local filename = vim.fn.expand("%:t")
-              return not (filename == ".env")
+              local file_extension = vim.fn.expand("%:e")
+              return not (filename == ".env" or file_extension == "env")
             end,
           }))
         end,

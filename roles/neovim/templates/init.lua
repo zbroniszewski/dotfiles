@@ -57,14 +57,14 @@ return {
     -- add to the global LSP on_attach function
     -- on_attach = function(client, bufnr)
     -- end,
-    setup_handlers = {
-      bashls = function(_, opts)
-        local filename = vim.fn.expand("%:t")
-        if not (filename == ".env") then
-          require("lspconfig")["bashls"].setup(opts)
-        end
-      end,
-    },
+    -- setup_handlers = {
+    -- bashls = function(_, opts)
+    --   local filename = vim.fn.expand("%:t")
+    --   if not (filename == ".env") then
+    --     require("lspconfig")["bashls"].setup(opts)
+    --   end
+    -- end,
+    -- },
     -- override the mason server-registration function
     -- server_registration = function(server, opts)
     --   require("lspconfig")[server].setup(opts)
@@ -113,6 +113,14 @@ return {
         opts.root_dir = require("lspconfig.util").root_pattern("tailwind.config.js")
         return opts
       end,
+      -- shellcheck = function(opts)
+      --   opts.handlers = {
+      --     ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+      --       print("Hello1!!")
+      --       vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+      --     end,
+      --   }
+      -- end,
     },
     -- enable servers that you already have installed without mason
     servers = {
