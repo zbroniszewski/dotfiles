@@ -133,6 +133,34 @@ return {
         opts.root_dir = require("lspconfig.util").root_pattern("tailwind.config.js")
         return opts
       end,
+      tsserver = function(opts)
+        opts.filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescriptreact",
+          "typescript.tsx",
+        }
+        opts.handlers = {
+          -- Ref: :help vim.diagnostic.config()
+          ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+            if result.diagnostics ~= nil then
+              local idx = 1
+              while idx <= #result.diagnostics do
+                -- Ref: https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
+                if result.diagnostics[idx].code == 80001 then
+                  table.remove(result.diagnostics, idx)
+                else
+                  idx = idx + 1
+                end
+              end
+            end
+            vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+          end,
+        }
+        return opts
+      end,
       -- shellcheck = function(opts)
       --   opts.handlers = {
       --     ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
