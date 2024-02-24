@@ -72,6 +72,26 @@ return {
 
     -- Add overrides for LSP server settings, the keys are the name of the server
     config = {
+      emmet_ls = function(opts)
+        opts.filetypes = {
+          "astro",
+          "css",
+          "eruby",
+          "html",
+          "htmldjango",
+          "javascriptreact",
+          "jinja",
+          "json",
+          "less",
+          "pug",
+          "sass",
+          "scss",
+          "svelte",
+          "typescriptreact",
+          "vue",
+        }
+        return opts
+      end,
       -- example for addings schemas to yamlls
       yamlls = {
         -- override table for require("lspconfig").yamlls.setup({...})
