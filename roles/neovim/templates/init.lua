@@ -202,6 +202,8 @@ return {
       extension = {
         tf = "terraform",
         tfvars = "terraform",
+        hcl = "terraform",
+        tpl = "templ",
       },
       filename = {},
       -- pattern = {
