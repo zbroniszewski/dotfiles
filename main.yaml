@@ -40,3 +40,5 @@
       tags: zsh
     - role: postman
       tags: postman
+    - role: arc
+      tags: arc
