@@ -3,6 +3,10 @@ return {
     "Glench/Vim-Jinja2-Syntax",
     event = "BufRead",
   },
+  {
+    "Almo7aya/openingh.nvim",
+    event = "BufRead",
+  }
   -- {
   --   "AstroNvim/astrotheme",
   --   dir = "/Users/zach/Developer/astrotheme",
