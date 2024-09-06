@@ -1,3 +1,5 @@
+local utils = require("astronvim.utils")
+
 return {
   -- Add the community repository of plugin specifications
   "AstroNvim/astrocommunity",
@@ -7,6 +9,23 @@ return {
   -- { import = "astrocommunity.colorscheme.catppuccin" },
   {
     import = "astrocommunity.completion.copilot-lua-cmp",
+    -- event = "BufEnter",
+    -- opts = function(_, opts)
+    --   opts.filetypes = {
+    --     ["*"] = false,
+    --     lua = true,
+    --     javascript = true,
+    --     typescript = true,
+    --     rust = true,
+    --     python = true,
+    --     php = true,
+    --     json = true,
+    --     bash = true,
+    --     sh = true,
+    --     yaml = true,
+    --   }
+    --   return opts
+    -- end,
   },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.rust" },
