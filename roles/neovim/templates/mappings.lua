@@ -20,6 +20,7 @@ return {
     --   desc = "Switch Buffers",
     -- },
     -- remove default bindings
+    -- ["p"] = { '"0p', desc = "Paste" },
     ["<C-s>"] = false,
     ["<C-q>"] = false,
     ["[b"] = false,
@@ -77,5 +78,6 @@ return {
     ["<A-k>"] = { ":move '<-2<CR><CR>gv=gv", desc = "Move current selection up by one line", silent = true },
     [">"] = { ">gv", desc = "Indent current block" },
     ["<"] = { "<gv", desc = "Unindent current block" },
+    ["p"] = { '"0p', desc = "Paste" },
   },
 }
